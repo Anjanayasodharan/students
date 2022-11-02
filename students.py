@@ -10,8 +10,9 @@ while True:
     print("5 delete a students")
     print("6 insert mark")
     print("7 view all mark")
+    print("8 individual mark")
 
-    print("8 exit")
+    print("9 exit")
     choice = int(input('Enter an option: '))
     if(choice==1):
         print('Student enter selected')
@@ -82,11 +83,23 @@ while True:
         sql = "SELECT s.`name`, s.`rollnumber`, s.`adminno`, s.`college`,m.physicsmark,m.chemistrymark,m.mathsmark FROM `students` s JOIN  marks m ON s.id = m.studentid   "
 
         mycursor.execute(sql)
-
         result =mycursor.fetchall()
-
         for i in result:
-
             print(i)
-    elif(choice==8):  
+    elif(choice==8): 
+        print('Displays the individual marks ')
+        adminno = input('enter the admi number u need : ')
+        sql = 'SELECT `id` FROM `students` WHERE `adminno`=' +adminno
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        id = 0
+        for i in result:
+            id = str(i[0])
+        print('Id of the student : ', id)
+        sql = 'SELECT * FROM `marks` WHERE `id`='+id
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        for i in result:
+            print(i)
+    elif(choice==9):    
         break
