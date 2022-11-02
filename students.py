@@ -21,7 +21,11 @@ while True:
         mycursor.execute(sql , data)
         mydb.commit()
     elif(choice==2):
-        print('view student')
+        sql = 'SELECT * FROM `students`'
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        for i in result:
+            print(i)
     elif(choice==3):
         print('search student')
     elif(choice==4):
