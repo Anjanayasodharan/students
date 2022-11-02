@@ -9,6 +9,8 @@ while True:
     print("4 update the students")    
     print("5 delete a students")
     print("6 insert mark")
+    print("7 view all mark")
+
     print("8 exit")
     choice = int(input('Enter an option: '))
     if(choice==1):
@@ -74,6 +76,17 @@ while True:
         mycursor.execute(sql ,data)
         mydb.commit()
         print("marks data inserted suceesfully")
-    elif(choice==8):
-        
+    elif(choice==7):
+        print("view all mark")
+
+        sql = "SELECT s.`name`, s.`rollnumber`, s.`adminno`, s.`college`,m.physicsmark,m.chemistrymark,m.mathsmark FROM `students` s JOIN  marks m ON s.id = m.studentid   "
+
+        mycursor.execute(sql)
+
+        result =mycursor.fetchall()
+
+        for i in result:
+
+            print(i)
+    elif(choice==8):  
         break
